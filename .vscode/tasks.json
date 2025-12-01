@@ -1,0 +1,42 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Run Cloudflare Tunnel",
+        "type": "shell",
+        "command": "cloudflared tunnel run dev-tunnel",
+        "problemMatcher": [],
+        "group": "build",
+        "isBackground": true
+      },
+      {
+        "label": "Run Backend (uvicorn)",
+        "type": "shell",
+        "command": "${workspaceFolder}/backend/.venv/Scripts/uvicorn.exe",
+        "args": [
+          "main:app",
+          "--reload",
+          "--host", "localhost",
+          "--port", "8000",
+          "--log-level", "debug",
+          "--access-log"
+        ],
+        "problemMatcher": [],
+        "options": {
+          "cwd": "${workspaceFolder}/backend"
+        },
+        "isBackground": true
+      },
+      {
+        "label": "Run Frontend (npm)",
+        "type": "shell",
+        "command": "npm run dev",
+        "problemMatcher": [],
+        "options": {
+          "cwd": "${workspaceFolder}/frontend"
+        },
+        "isBackground": true
+      },
+    ]
+  }
+  
